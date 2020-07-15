@@ -1,0 +1,1 @@
+BIN_DOCKER = 'docker'BIN_DOCKER_COMPOSE = 'docker-compose'#Containers NamePHP_CONTAINER = php-container# Make Commandsup:	$(BIN_DOCKER_COMPOSE)  -f ./docker-compose.yml upbash:	$(BIN_DOCKER) exec -it $(PHP_CONTAINER)  bash

@@ -16,7 +16,7 @@ This means, that `Streaming` is constantly efficient for any size of processed J
 
 
 ## End point to search in rooms
-- A REST API application to get transactions from multiple provider with criteria
+- A REST API application to parse hotels rooms from multiple provider/advertiser with criteria
 
 - GET `http://localhost:8001/api/rooms`
 - Response 
