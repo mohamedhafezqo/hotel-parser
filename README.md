@@ -62,7 +62,7 @@ This means, that `Streaming` is constantly efficient for any size of processed J
 
 ### Installation
 - Run `docker-compose up -d --build`
-- Run `docker-compose run php bin/console rabbitmq:consumer send_notifications`
+- Run `docker exec php-container composer install`
 
 
 ### Running the tests
