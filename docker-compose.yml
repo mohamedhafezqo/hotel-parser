@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: ./docker/local/nginx/Dockerfile
+        volumes:
+            - ./:/var/www/
+        ports:
+            - 8001:80
+        networks:
+            - hotel_api_parser
+    php:
+        container_name: php-container
+        build:
+            context: .
+            dockerfile: ./docker/local/php/Dockerfile
+        environment:
+            APP_ENV: dev
+        volumes:
+            - ./:/var/www/
+        networks:
+            - hotel_api_parser
+networks:
+    hotel_api_parser:
