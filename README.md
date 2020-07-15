@@ -1,7 +1,7 @@
 
 ### Class diagram
 
-![Class Diagram](./class_diagram.png)
+![Class Diagram](class_diagram.png)
 
 ### Efficiency of parsing streams/files
 
