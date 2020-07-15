@@ -1,0 +1,22 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+#            url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s1/availability
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    advertisers:
+        advertiserA:
+            method: GET
+            url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s1/availability
+            file: '%kernel.project_dir%/s1-response.json'
+            file_stream_limit: '20'
+            api_json_pointer: 'hotels'
+            file_json_pointer: '/hotels'
+        advertiserB:
+            method: GET
+            url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s2/availability
+            file: '%kernel.project_dir%/s2-response.json'
+            file_stream_limit: '20'
+            api_json_pointer: 'hotels'
+            file_json_pointer: '/hotels'

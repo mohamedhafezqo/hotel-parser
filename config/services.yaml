@@ -1,0 +1,83 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    advertisers:
+        advertiserA:
+            method: GET
+            url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s1/availability
+            file: '%kernel.project_dir%/s1-response.json'
+            file_stream_limit: '20'
+            api_json_pointer: 'hotels'
+            file_json_pointer: '/hotels'
+        advertiserB:
+            method: GET
+            url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s2/availability
+            file: '%kernel.project_dir%/s2-response.json'
+            file_stream_limit: '20'
+            api_json_pointer: 'hotels'
+            file_json_pointer: '/hotels'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Service\HotelClient:
+        class: App\Service\HotelClient
+        arguments:
+            - !tagged_iterator app.parser
+
+    App\Service\Parser\APIParser:
+        class: App\Service\Parser\APIParser
+        arguments:
+            - '@http_client'
+        tags:
+            - { name: 'app.parser', alias: 'api_parser' }
+
+    App\Service\Parser\FileParser:
+        class: App\Service\Parser\FileParser
+        tags:
+            - { name: 'app.parser', alias: 'file_parser' }
+
+    App\Service\RoomFacade:
+        class: App\Service\RoomFacade
+        arguments:
+            - !tagged_iterator app.advertiser
+            - '@App\Service\Criteria\CriteriaBuilder'
+
+    App\Service\Advertiser\AdvertiserA:
+        class: App\Service\Advertiser\AdvertiserA
+        arguments:
+            - "%advertisers%"
+            - '@App\Service\HotelClient'
+            - '@App\Service\Formatter\AdvertiserAFormatter'
+        tags:
+            - { name: 'app.advertiser', alias: 'advertiserA' }
+
+    App\Service\Advertiser\AdvertiserB:
+        class: App\Service\Advertiser\AdvertiserB
+        arguments:
+            - "%advertisers%"
+            - '@App\Service\HotelClient'
+            - '@App\Service\Formatter\AdvertiserBFormatter'
+        tags:
+            - { name: 'app.advertiser', alias: 'advertiserB' }
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
