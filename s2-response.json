@@ -1,0 +1,99 @@
+{
+  "hotels": [
+    {
+      "name": "Hotel A",
+      "stars": 4,
+      "rooms": [
+        {
+          "code": "DBL-TWN",
+          "name": "Double or Twin SUPERIOR",
+          "net_rate": "143.00",
+          "taxes": [
+            {
+              "amount": "10.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            }
+          ],
+          "totalPrice": "153.00"
+        },
+        {
+          "code": "HF-BD",
+          "name": "HALF BOARD",
+          "net_rate": "131.00",
+          "taxes": [
+            {
+              "amount": "11.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            }
+          ],
+          "totalPrice": "142.00"
+        },
+        {
+          "code": "QN-RM",
+          "name": "Queen Room",
+          "net_rate": "140",
+          "taxes": [
+            {
+              "amount": "12.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            },
+            {
+              "amount": "4.00",
+              "currency": "EUR",
+              "type": "EXTRA_FEES"
+            }
+          ],
+          "totalPrice": "156.00"
+        }
+      ]
+    },
+    {
+      "name": "Hotel C",
+      "stars": 5,
+      "rooms": [
+        {
+          "code": "SNG-RM",
+          "name": "Single Bed",
+          "net_rate": "96.00",
+          "taxes": [
+            {
+              "amount": "12.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            }
+          ],
+          "totalPrice": "108.00"
+        },
+        {
+          "code": "FUBOD",
+          "name": "FULL BOARD",
+          "net_rate": "165.00",
+          "taxes": [
+            {
+              "amount": "15.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            }
+          ],
+          "totalPrice": "180.00"
+        },
+        {
+          "code": "LUX-ROM",
+          "name": "Luxury Room",
+          "net_rate": "177.00",
+          "taxes": [
+            {
+              "amount": "22.00",
+              "currency": "EUR",
+              "type": "TAXESANDFEES"
+            }
+          ],
+          "totalPrice": "199.00"
+        }
+      ]
+    }
+  ]
+}
