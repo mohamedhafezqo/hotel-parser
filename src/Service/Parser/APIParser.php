@@ -58,7 +58,7 @@ class APIParser implements ParserInterface
 
             return $response->toArray()[$this->config->get('api_json_pointer')];
 
-        } catch (TransportExceptionInterface $exception) {
+        } catch (\Throwable $exception) {
             // Log the error
             // $exception->getMessage();
             return [];

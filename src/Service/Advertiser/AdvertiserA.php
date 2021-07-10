@@ -4,11 +4,8 @@ namespace App\Service\Advertiser;
 
 use App\Service\Advertiser\Contract\AdvertiserInterface;
 use App\Service\Contract\ClientInterface;
-use App\Service\Criteria\Contract\CriteriaBuilderInterface;
 use App\Service\Formatter\Contract\FormatterInterface;
-use App\Service\Parser\Contract\ParserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Criteria;
 
 /**
  * Class AdvertiserA
