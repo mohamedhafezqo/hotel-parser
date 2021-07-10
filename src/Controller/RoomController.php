@@ -34,6 +34,6 @@ class RoomController extends AbstractController
     {
         $results = $roomFacade->findBy($request->query->all());
 
-        return $this->json(['data' => $results->getValues()], Response::HTTP_OK, []);
+        return $this->json(['rooms' => $results->getValues()], Response::HTTP_OK, []);
     }
 }

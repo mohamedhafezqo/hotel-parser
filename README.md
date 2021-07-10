@@ -10,32 +10,44 @@
 - Response 
 ```json
 {
-  "rooms": {
-    "11": {
-      "code": "LUX-ROM",
-      "name": "Luxury Room",
-      "net_price": "177.00",
-      "total_price": "199.00",
-      "taxes": [],
+  "data": [
+    {
+      "code": "DBL-TWN",
+      "name": null,
+      "net_price": "140.00",
+      "total_price": "152.00",
+      "taxes": [
+        {
+          "amount": "12.00",
+          "currency": "EUR",
+          "type": "TAXESANDFEES"
+        }
+      ],
       "hotel": {
-        "name": "Hotel C",
-        "stars": 5,
+        "name": "Hotel A",
+        "stars": 4,
         "rooms": null
       }
     },
-    "10": {
-      "code": "FUBOD",
-      "name": "FULL BOARD",
-      "net_price": "165.00",
-      "total_price": "180.00",
-      "taxes": [],
+    {
+      "code": "HF-BD",
+      "name": null,
+      "net_price": "133.00",
+      "total_price": "142.00",
+      "taxes": [
+        {
+          "amount": "13.00",
+          "currency": "EUR",
+          "type": "TAXESANDFEES"
+        }
+      ],
       "hotel": {
-        "name": "Hotel C",
-        "stars": 5,
+        "name": "Hotel A",
+        "stars": 4,
         "rooms": null
       }
     }
-  }
+  ]
 }
 ```
 
