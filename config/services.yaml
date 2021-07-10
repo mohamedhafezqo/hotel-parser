@@ -8,6 +8,7 @@ parameters:
         advertiserA:
             method: GET
             url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s1/availability
+            time_out_limit: 0.8
             file: '%kernel.project_dir%/s1-response.json'
             file_stream_limit: '20'
             api_json_pointer: 'hotels'
@@ -15,6 +16,7 @@ parameters:
         advertiserB:
             method: GET
             url: https://f704cb9e-bf27-440c-a927-4c8e57e3bad1.mock.pstmn.io/s2/availability
+            time_out_limit: 0.8
             file: '%kernel.project_dir%/s2-response.json'
             file_stream_limit: '20'
             api_json_pointer: 'hotels'
