@@ -10,7 +10,7 @@
 - Response 
 ```json
 {
-  "data": [
+  "rooms": [
     {
       "code": "DBL-TWN",
       "name": null,
