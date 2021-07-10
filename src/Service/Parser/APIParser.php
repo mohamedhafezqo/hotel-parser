@@ -4,7 +4,6 @@ namespace App\Service\Parser;
 
 use App\Service\Parser\Contract\ParserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -45,20 +44,25 @@ class APIParser implements ParserInterface
      * @throws DecodingExceptionInterface
      * @throws RedirectionExceptionInterface
      * @throws ServerExceptionInterface
-     * @throws TransportExceptionInterface
      */
     public function parse()
     {
-        $response = $this->httpClient->request(
-            $this->config->get('method'),
-            $this->config->get('url')
-        );
+        try {
+            $response = $this->httpClient->request(
+                $this->config->get('method'),
+                $this->config->get('url'),
+                [
+                    'timeout' => $this->config->get('time_out_limit')
+                ]
+            );
 
-        if ($response->getStatusCode() != Response::HTTP_OK) {
+            return $response->toArray()[$this->config->get('api_json_pointer')];
+
+        } catch (TransportExceptionInterface $exception) {
+            // Log the error
+            // $exception->getMessage();
             return [];
         }
-
-        return $response->toArray()[$this->config->get('api_json_pointer')];
     }
 
     /**
