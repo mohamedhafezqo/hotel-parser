@@ -3,18 +3,6 @@
 
 ![Class Diagram](class_diagram.png)
 
-### Efficiency of parsing streams/files
-
-Following table demonstrates a concept of the difference:
-
-| # | String items in memory at a time	 | Decoded PHP items in memory at a time | Total |
-| :---         |     :---:      |          ---: | ---: |
-| json_decode   | 10000 | 10000 | 20000 |
-| JsonMachine::fromStream    | 1       | 1      | 2 |
-
-This means, that `Streaming` is constantly efficient for any size of processed JSON. 100 GB no problem.
-
-
 ## End point to search in rooms
 - A REST API application to parse hotels rooms from multiple provider/advertiser with criteria
 
@@ -50,6 +38,14 @@ This means, that `Streaming` is constantly efficient for any size of processed J
   }
 }
 ```
+
+### Assumptions:
+- I set timeout for each API request to `.8` to keep my service live.
+- Relayed on filesystem `s1-response.json` and `s2-response.json` in case the APIs down or exceed the timeout limit, so the system can switch between fetching the data from the APIs or filesystem on runtime based on APIs' availabilities and timeout limit constrains.
+- I used [Symfony Service Tag](https://symfony.com/doc/current/service_container/tags.html) to automatically inject advertisers. But if we have a lot of advertisers we can list them in DB.
+
+   
+ 
 
 ##### Criteria/Filters Examples:
 

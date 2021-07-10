@@ -3,7 +3,6 @@
 namespace App\Service\Criteria;
 
 use App\Service\Criteria\Contract\FilterFactoryInterface;
-use App\Service\Criteria\Contract\FilterInterface;
 
 /**
  * Class FilterFactory

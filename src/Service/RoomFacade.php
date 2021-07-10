@@ -66,6 +66,11 @@ class RoomFacade implements RoomFacadeInterface
         }
     }
 
+    /**
+     * @param $newRoom
+     *
+     * @return bool
+     */
     private function isExist($newRoom): bool
     {
         return $this->results->exists(function($key, $existedRoom) use ($newRoom){
