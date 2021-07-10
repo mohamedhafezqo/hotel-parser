@@ -16,12 +16,12 @@ class HotelClient implements ClientInterface
     /**
      * @var iterable $parsers
      */
-    private $parsers;
+    private iterable $parsers;
 
     /**
      * @var ArrayCollection $config
      */
-    private $config;
+    private ArrayCollection $config;
 
     /**
      * HotelClient constructor.
@@ -32,7 +32,7 @@ class HotelClient implements ClientInterface
     public function __construct(iterable $parsers, array $config = [])
     {
         $this->parsers = $parsers;
-        $this->config = $config;
+        $this->config = new ArrayCollection($config);
     }
 
     /**

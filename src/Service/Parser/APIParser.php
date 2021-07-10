@@ -21,12 +21,12 @@ class APIParser implements ParserInterface
     /**
      * @var HttpClientInterface $httpClient
      */
-    private $httpClient;
+    private HttpClientInterface $httpClient;
 
     /**
      * @var ArrayCollection $config
      */
-    private $config;
+    private ArrayCollection $config;
 
     /**
      * Parser constructor.

@@ -15,15 +15,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class RoomFacade implements RoomFacadeInterface
 {
-    /**
-     * @var iterable $advertisers
-     */
-    private $advertisers;
+    private ArrayCollection $results;
 
-    /**
-     * @var CriteriaBuilderInterface $criteriaBuilder
-     */
-    private $criteriaBuilder;
+    private iterable $advertisers;
+
+    private CriteriaBuilderInterface $criteriaBuilder;
 
     /**
      * RoomFacade constructor.
@@ -35,6 +31,7 @@ class RoomFacade implements RoomFacadeInterface
     {
         $this->advertisers = $advertisers;
         $this->criteriaBuilder = $criteriaBuilder;
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -44,16 +41,12 @@ class RoomFacade implements RoomFacadeInterface
      */
     public function findBy(array $filters)
     {
-        $results = new ArrayCollection();
-
         /** @var AdvertiserInterface $advertiser */
         foreach ($this->advertisers as $advertiser) {
-            $results = $this->aggregate($results, $advertiser->fetch());
+            $this->aggregate($advertiser->fetch());
         }
 
-        $results = $this->criteriaBuilder->filter($filters, $results);
-
-        return $results;
+        return $this->criteriaBuilder->filter($filters, $this->results);
     }
 
     /**
@@ -62,27 +55,30 @@ class RoomFacade implements RoomFacadeInterface
      *
      * @return mixed
      */
-    private function aggregate($results, $newRooms)
+    private function aggregate($newRooms): void
     {
         foreach ($newRooms as $newRoom) {
-            $exists =  $results->exists(function($key, $existedRoom) use ($newRoom){
-
-                if ($newRoom->getCode() != $existedRoom->getCode()) {
-                    return false;
-                }
-
-                $lessPrice = $this->getLessPrice($existedRoom, $newRoom);
-                $existedRoom->setTotalPrice($lessPrice);
-
-                return true;
-            });
+            $exists =  $this->isExist($newRoom);
 
             if (!$exists) {
-                $results->add($newRoom);
+                $this->results->add($newRoom);
             }
         }
+    }
 
-        return $results;
+    private function isExist($newRoom): bool
+    {
+        return $this->results->exists(function($key, $existedRoom) use ($newRoom){
+
+            if ($newRoom->getCode() != $existedRoom->getCode()) {
+                return false;
+            }
+
+            $lessPrice = $this->getLessPrice($existedRoom, $newRoom);
+            $existedRoom->setTotalPrice($lessPrice);
+
+            return true;
+        });
     }
 
     /**

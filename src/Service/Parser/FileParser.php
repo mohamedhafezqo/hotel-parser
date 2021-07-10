@@ -17,7 +17,7 @@ class FileParser implements ParserInterface
     /**
      * @var ArrayCollection $config
      */
-    private $config;
+    private ArrayCollection $config;
 
     /**
      * @param ArrayCollection $config

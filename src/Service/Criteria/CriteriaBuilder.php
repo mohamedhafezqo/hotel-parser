@@ -18,7 +18,7 @@ class CriteriaBuilder implements CriteriaBuilderInterface
     /**
      * @var FilterFactoryInterface $filterFactory
      */
-    private $filterFactory;
+    private FilterFactoryInterface $filterFactory;
 
     /**
      * CriteriaBuilder constructor.

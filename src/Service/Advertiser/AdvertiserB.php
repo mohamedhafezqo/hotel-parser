@@ -21,17 +21,17 @@ class AdvertiserB implements AdvertiserInterface
     /**
      * @var ArrayCollection $config
      */
-    private $config;
+    private ArrayCollection $config;
 
     /**
      * @var ClientInterface $hotelClient
      */
-    private $hotelClient;
+    private ClientInterface $hotelClient;
 
     /**
      * @var FormatterInterface $formatter
      */
-    private $formatter;
+    private FormatterInterface $formatter;
 
     /**
      * AdvertiserB constructor.
