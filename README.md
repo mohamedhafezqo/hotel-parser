@@ -53,8 +53,8 @@
 
 ### Assumptions:
 - I set timeout for each API request to `.8` to keep my service live.
-- Relayed on filesystem `s1-response.json` and `s2-response.json` in case the APIs down or exceed the timeout limit, so the system can switch between fetching the data from the APIs or filesystem on runtime based on APIs' availabilities and timeout limit constrains.
-- I used [Symfony Service Tag](https://symfony.com/doc/current/service_container/tags.html) to automatically inject advertisers. But if we have a lot of advertisers we can list them in DB.
+- I relayed on filesystem as a **fallback** `s1-response.json`, `s2-response.json` in case the APIs down or exceed the timeout limit, so the system can switch between fetching the data from the APIs to filesystem on runtime based on APIs' availabilities and timeout limit constrains.
+- I used [Symfony Service Tag](https://symfony.com/doc/current/service_container/tags.html) to automatically inject advertisers who implement `AdvertiserInterface`. But if we have a lot of advertisers we can list them in DB.
 
 ##### Criteria/Filters Examples:
 
