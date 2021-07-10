@@ -1,7 +1,7 @@
 
-### Class diagram
+### Sequence diagram
 
-![Class Diagram](class_diagram.png)
+![Sequence Diagram](sequence_diagram.jpeg)
 
 ## End point to search in rooms
 - A REST API application to parse hotels rooms from multiple provider/advertiser with criteria
@@ -44,9 +44,6 @@
 - Relayed on filesystem `s1-response.json` and `s2-response.json` in case the APIs down or exceed the timeout limit, so the system can switch between fetching the data from the APIs or filesystem on runtime based on APIs' availabilities and timeout limit constrains.
 - I used [Symfony Service Tag](https://symfony.com/doc/current/service_container/tags.html) to automatically inject advertisers. But if we have a lot of advertisers we can list them in DB.
 
-   
- 
-
 ##### Criteria/Filters Examples:
 
 - example `http://localhost:8001/api/rooms?sortByPrice=asc&maxPrice=160&minPrice=150`
@@ -55,16 +52,11 @@
 - sortByPrice `/api/rooms?sortByPrice=asc` requirements=`"[a-z]+"`
 - code `/api/rooms?code=FUBOD` requirements=`"[a-z]+"`
 
-
 ### Installation
-- Run `docker-compose up -d --build`
-- Run `docker exec php-container composer install`
-
+- Run `make build`
 
 ### Running the tests
-
-- Run `docker exec php-container php bin/phpunit`
-
+- Run `make test`
 
 ### Built With
 
