@@ -1,7 +1,7 @@
 
 ### Sequence diagram
 
-![Sequence Diagram](sequence_diagram.jpeg)
+![Sequence Diagram](sequence-diagram.png)
 
 ## End point to search in rooms
 - A REST API application to parse hotels rooms from multiple provider/advertiser with criteria
