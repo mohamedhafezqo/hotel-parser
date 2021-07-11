@@ -1,6 +1,5 @@
 
 ### Sequence diagram
-
 ![Sequence Diagram](sequence-diagram.png)
 
 ## End point to search in rooms
