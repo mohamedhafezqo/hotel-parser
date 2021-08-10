@@ -10,3 +10,6 @@ test:
 
 down:
 	docker-compose down
+
+log:
+	docker logs -f --details php-container
